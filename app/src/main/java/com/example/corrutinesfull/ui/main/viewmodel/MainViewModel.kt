@@ -23,7 +23,7 @@ class MainViewModel : ViewModel() {
             cargando.postValue(true)
             try {
                 val respuestaPokemones = service.obtenerPokemones(limit)
-                if (respuestaPokemones.isSuccessful()) {
+                if (respuestaPokemones.isSuccessful) {
                     pokemones.postValue(respuestaPokemones.body())
                 }
                 // Errores de Servidores
@@ -41,6 +41,7 @@ class MainViewModel : ViewModel() {
             // Errores de Hilos u otra cosa
             } catch (err: IOException) {
                 error.postValue(err.localizedMessage)
+                cargando.postValue(false)
             }
         }
     }
