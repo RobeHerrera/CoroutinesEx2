@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CorrutinesFull</string>
+    <string name="limite">limite</string>
+    <string name="llamada">Llamada</string>
 </resources>
