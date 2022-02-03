@@ -35,9 +35,14 @@ class MainActivityView : AppCompatActivity() {
     }
 
     private fun observadores() {
-        viewModel.pokemones.observe(this) { pokemones ->
+
+        /* Forma 1 de hacer la lambda */
+        /*viewModel.pokemones.observe(this) { pokemones ->
             llenarRecyclerView(pokemones)
-        }
+        }*/
+
+        /* Forma 2 de hacer la lambda */
+        viewModel.pokemones.observe(this, this::llenarRecyclerView)
 
         viewModel.error.observe(this) { error ->
             Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
