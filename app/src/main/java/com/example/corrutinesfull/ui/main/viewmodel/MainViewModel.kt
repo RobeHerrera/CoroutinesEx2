@@ -17,6 +17,7 @@ class MainViewModel : ViewModel() {
     val error = MutableLiveData<String>()
     val cargando = MutableLiveData<Boolean>()
 
+
     fun obtenerPokemones(limit: Int) {
         viewModelScope.launch {
 
@@ -30,6 +31,7 @@ class MainViewModel : ViewModel() {
                 else {
                     error.postValue(respuestaPokemones.errorBody().toString())
                 }
+                cargando.postValue(false)
 
                 /* when(respuestaPokemones.code()){
                      // Otra forma de validar la respuesta positiva
@@ -38,7 +40,7 @@ class MainViewModel : ViewModel() {
                      500 -> error.postValue("error de servidor")
                      404 -> error.postValue("no encontrado")
                  }*/
-            // Errores de Hilos u otra cosa
+                // Errores de Hilos u otra cosa
             } catch (err: IOException) {
                 error.postValue(err.localizedMessage)
                 cargando.postValue(false)
